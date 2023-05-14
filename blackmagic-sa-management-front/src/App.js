@@ -1,10 +1,16 @@
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import LoginContainer from "./components/Login/LoginContainer";
+import MainPageContainer from "./components/MainPage/MainPageContainer";
 
 
 function App() {
+  const [isLogined, setIsLogined] = useState(true);
+
   return (
-    <div>
-      BlackMagic-SA management
-    </div>
+    <>
+      {isLogined ? <MainPageContainer /> : <LoginContainer />}
+    </>
   );
 }
 
