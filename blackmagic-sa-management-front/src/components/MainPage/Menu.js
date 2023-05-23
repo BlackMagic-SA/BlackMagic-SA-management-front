@@ -1,6 +1,10 @@
 import React from "react";
 
-const Menu = ({ onMenuChange }) => {
+const Menu = ({ onMenuChange, setIsLogined }) => {
+  const onLogout = () => {
+    setIsLogined(false);
+  };
+
   return (
     <div className="menu-container">
       <button
@@ -43,6 +47,7 @@ const Menu = ({ onMenuChange }) => {
       <button className="menu-btn" onClick={onMenuChange} value="post">
         로그 등록
       </button>
+      <button className="menu-btn" onClick={onLogout}>로그아웃</button>
     </div>
   );
 };

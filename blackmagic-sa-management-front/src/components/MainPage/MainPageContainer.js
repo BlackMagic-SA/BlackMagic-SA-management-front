@@ -8,7 +8,7 @@ import AddManagerContainer from "../AddManager/AddManagerContainer";
 import ManagerListContainer from "../ManagerList/ManagerListContainer";
 import CompanyListContainer from "../CompanyList/CompanyListContainer";
 
-const MainPageContainer = () => {
+const MainPageContainer = ({ setIsLogined }) => {
   const [selectedMenu, setSelectedMenu] = useState("log");
 
   const onMenuChange = (e) => {
@@ -17,7 +17,7 @@ const MainPageContainer = () => {
 
   return (
     <div className="mainmenu-container">
-      <Menu onMenuChange={onMenuChange} />
+      <Menu onMenuChange={onMenuChange} setIsLogined={setIsLogined} />
       {selectedMenu === "log" ? (
         <LogContainer />
       ) : selectedMenu === "add-company" ? (
@@ -25,11 +25,11 @@ const MainPageContainer = () => {
       ) : selectedMenu === "company-list" ? (
         <CompanyListContainer />
       ) : selectedMenu === "add-sub-manager" ? (
-        <AddManagerContainer managerType='sub' />
+        <AddManagerContainer managerType='sub' setSelectedMenu={setSelectedMenu} />
       ) : selectedMenu === "sub-manager-list" ? (
         <ManagerListContainer managerType='sub' />
       ) : selectedMenu === "add-manager" ? (
-        <AddManagerContainer managerType='top' />
+        <AddManagerContainer managerType='top' setSelectedMenu={setSelectedMenu} />
       ) : selectedMenu === "manager-list" ? (
         <ManagerListContainer managerType='top' />
       ) : (

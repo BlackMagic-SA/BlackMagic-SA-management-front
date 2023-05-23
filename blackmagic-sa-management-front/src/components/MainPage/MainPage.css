@@ -1,3 +1,7 @@
+* {
+    box-sizing:content-box;
+}
+
 .mainmenu-container {
     display: flex;
 }
@@ -14,7 +18,7 @@
 
 .menu-btn {
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     border-radius: 0;
     background-color: white;
     font-size: 1.5rem;
@@ -36,11 +40,20 @@ td {
 input {
     width: 50%;
     padding: 0.7rem;
+    margin-bottom: 5px;
+}
+
+select {
+    width: 50%;
+    padding: 0.7rem;
+    margin-bottom: 5px;
+    color: gray;
 }
 
 button {
     width: 5%;
     padding: 0.7rem 0;
+    cursor: pointer;
 }
 
 .delete-btn {
