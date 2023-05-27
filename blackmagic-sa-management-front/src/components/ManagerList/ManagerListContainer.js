@@ -9,7 +9,6 @@ const ManagerListContainer = ({ managerType }) => {
 
   useEffect(() => {
     axios("http://localhost:8080/user/list").then((response) => {
-      console.log(response.data)
       setUsers(response.data);
     });
   }, [users]);
@@ -53,7 +52,13 @@ const ManagerListContainer = ({ managerType }) => {
                 <td>{idx++}</td>
                 <td>{user.accountName}</td>
                 <td>{user.name}</td>
-                <td>{companies.filter((company) => company.companyId === user.companyId)[0].companyName}</td>
+                <td>
+                  {
+                    companies.filter(
+                      (company) => company.companyId === user.companyId
+                    )[0].companyName
+                  }
+                </td>
                 <td>{user.contact}</td>
                 <td>{user.email}</td>
                 <td>{user.ipAddress}</td>

@@ -122,7 +122,7 @@ const AddManagerContainer = ({ managerType, setSelectedMenu }) => {
         />
         <select onChange={onCompanyIdChange}>
           {companies.map((company) => (
-            <option value={company.companyId}>{company.companyName}</option>
+            <option key={company.companyId} value={company.companyId}>{company.companyName}</option>
           ))}
         </select>
         <input

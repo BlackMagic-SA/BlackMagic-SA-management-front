@@ -4,18 +4,21 @@ import { useState } from "react";
 
 const CompanyListContainer = () => {
   const [companies, setCompanies] = useState([]);
+  
   useEffect(() => {
     axios("http://localhost:8080/company/list").then((response) => {
       setCompanies(response.data);
     });
-  }, [companies]);
+  }, []);
 
   const onDelete = (e) => {
+    console.log(axios.defaults.headers.common['Authorization']);
     axios({
       method: "delete",
       url: `http://localhost:8080/company/${e.target.value}`,
-    }).then(() => {
-      setCompanies([]);
+    }).then((response) => {
+      console.log(response)
+      setCompanies(companies.filter((company) => company.companyId !== parseInt(e.target.value)));
     });
   };
 

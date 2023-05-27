@@ -18,7 +18,6 @@ const AddCompanyContainer = ({ setSelectedMenu }) => {
         companyName: companyName,
       },
     }).then((response) => {
-      console.log(response);
       alert("기관 등록을 완료하였습니다.");
       setSelectedMenu("company-list");
     });
