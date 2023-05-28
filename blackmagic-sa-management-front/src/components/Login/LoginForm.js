@@ -27,7 +27,7 @@ const LoginForm = ({ setIsLogined }) => {
       },
     })
       .then((response) => {
-        axios.defaults.headers.common["Authorization"] =
+        customAxios.defaults.headers.common["Authorization"] =
           "Bearer " + response.data.jwt;
         localStorage.setItem("token", "Bearer " + response.data.jwt);
         setIsLogined(true);

@@ -1,10 +1,11 @@
 import axios from "axios";
 import React from "react";
+import { customAxios } from '../../hook/customAxios';
 
 const Menu = ({ onMenuChange, setIsLogined }) => {
   const onLogout = () => {
     setIsLogined(false);
-    delete axios.defaults.headers.common["Authorization"];
+    delete customAxios.defaults.headers.common["Authorization"];
   };
 
   return (
