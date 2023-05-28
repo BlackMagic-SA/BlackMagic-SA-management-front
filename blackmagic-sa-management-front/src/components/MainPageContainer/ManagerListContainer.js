@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
+import { customAxios } from '../../hook/customAxios';
 
 const ManagerListContainer = ({ managerType }) => {
   const [users, setUsers] = useState([]);
@@ -8,21 +9,21 @@ const ManagerListContainer = ({ managerType }) => {
   let idx = 1;
 
   useEffect(() => {
-    axios("http://localhost:8080/user/list").then((response) => {
+    customAxios("user/list").then((response) => {
       setUsers(response.data);
     });
   }, []);
 
   useEffect(() => {
-    axios("http://localhost:8080/company/list").then((response) => {
+    customAxios("company/list").then((response) => {
       setCompanies(response.data);
     });
   }, []);
 
   const onDelete = (e) => {
-    axios({
+    customAxios({
       method: "delete",
-      url: `http://localhost:8080/user/${e.target.value}`,
+      url: `user/${e.target.value}`,
     }).then(() => {
       setUsers(
         users.filter((user) => user.userId !== parseInt(e.target.value))

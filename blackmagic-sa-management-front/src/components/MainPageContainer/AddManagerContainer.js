@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { customAxios } from '../../hook/customAxios';
 
 const AddManagerContainer = ({ managerType, setSelectedMenu }) => {
   const [accountName, setAccountName] = useState("");
@@ -15,7 +16,7 @@ const AddManagerContainer = ({ managerType, setSelectedMenu }) => {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
-    axios("http://localhost:8080/company/list").then((response) => {
+    customAxios("company/list").then((response) => {
       setCompanies(response.data);
       setCompanyId(response.data[0].companyId);
     });
@@ -55,9 +56,9 @@ const AddManagerContainer = ({ managerType, setSelectedMenu }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios({
+    customAxios({
       method: "post",
-      url: "http://localhost:8080/user",
+      url: "user",
       data: {
         companyId: companyId,
         authority: managerType === 'sub' ? 1 : 2,

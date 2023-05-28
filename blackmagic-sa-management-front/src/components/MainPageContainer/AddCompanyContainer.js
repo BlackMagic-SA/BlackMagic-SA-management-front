@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { customAxios } from '../../hook/customAxios';
 
 const AddCompanyContainer = ({ setSelectedMenu }) => {
   const [companyName, setCompanyName] = useState("");
@@ -11,9 +12,9 @@ const AddCompanyContainer = ({ setSelectedMenu }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    axios({
+    customAxios({
       method: "post",
-      url: "http://localhost:8080/company",
+      url: "company",
       data: {
         companyName: companyName,
       },

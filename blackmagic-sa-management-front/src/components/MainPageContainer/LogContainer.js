@@ -1,39 +1,45 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { customAxios } from "../../hook/customAxios";
 
 const LogContainer = () => {
   const [logs, setLogs] = useState([]);
   const [companies, setCompanies] = useState([]);
   useEffect(() => {
     if (parseInt(localStorage.getItem("authority")) === 2) {
-      axios("http://localhost:8080/record/list").then((response) => {
+      customAxios.get("record/list").then((response) => {
         setLogs(response.data);
       });
 
-      axios("http://localhost:8080/company/list").then((response) => {
+      customAxios.get("company/list").then((response) => {
         setCompanies(response.data);
       });
     } else {
-      axios(`http://localhost:8080/record/company/${localStorage.getItem(
-        "company_id"
-      )}
-      `).then((response) => {
-        setLogs(response.data);
-      });
+      customAxios
+        .get(
+          `record/company/${localStorage.getItem("company_id")}
+      `
+        )
+        .then((response) => {
+          setLogs(response.data);
+        });
 
-      axios(
-        `http://localhost:8080/company/${localStorage.getItem("company_id")}`
-      ).then((response) => {
-        setCompanies(response.data);
-      });
+      customAxios
+        .get(`company/${localStorage.getItem("company_id")}`)
+        .then((response) => {
+          setCompanies(response.data);
+        });
     }
   }, []);
 
-  const onDownload = async () => {
+  const onDownload = async (e) => {
     try {
-      const response = await axios.get("http://localhost:8080/pdf/1", {
-        responseType: "blob",
-      });
+      const response = await customAxios.get(
+        `pdf/${e.target.value}`,
+        {
+          responseType: "blob",
+        }
+      );
 
       const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
 
@@ -107,7 +113,11 @@ const LogContainer = () => {
               <td>{log.overwriteCount}</td>
               <td>{log.verificationCode}</td>
               <td>
-                <button onClick={onDownload} style={{ width: "60px" }}>
+                <button
+                  value={log.recordId}
+                  onClick={onDownload}
+                  style={{ width: "60px" }}
+                >
                   다운로드
                 </button>
               </td>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { customAxios } from '../../hook/customAxios';
 
 const PostContainer = () => {
   const [file, setFile] = useState(null);
@@ -11,8 +12,8 @@ const PostContainer = () => {
   const handleUpload = () => {
     const formData = new FormData();
     formData.append("file", file);
-    axios
-      .post("http://localhost:8080/pdf", formData, {
+    customAxios
+      .post("pdf", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: localStorage.getItem("token"),

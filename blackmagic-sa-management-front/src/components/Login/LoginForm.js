@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { customAxios } from '../../hook/customAxios';
 
 const LoginForm = ({ setIsLogined }) => {
   const [id, setId] = useState("");
@@ -17,9 +18,9 @@ const LoginForm = ({ setIsLogined }) => {
 
   const onLogin = (e) => {
     e.preventDefault();
-    axios({
+    customAxios({
       method: "post",
-      url: "http://localhost:8080/user/authenticate",
+      url: "user/authenticate",
       data: {
         accountName: id,
         password: pw,

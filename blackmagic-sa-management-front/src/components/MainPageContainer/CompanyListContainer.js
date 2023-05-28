@@ -1,20 +1,21 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { customAxios } from '../../hook/customAxios';
 
 const CompanyListContainer = () => {
   const [companies, setCompanies] = useState([]);
   
   useEffect(() => {
-    axios("http://localhost:8080/company/list").then((response) => {
+    customAxios("company/list").then((response) => {
       setCompanies(response.data);
     });
   }, []);
 
   const onDelete = (e) => {
-    axios({
+    customAxios({
       method: "delete",
-      url: `http://localhost:8080/company/${e.target.value}`,
+      url: `company/${e.target.value}`,
     }).then((response) => {
       setCompanies(companies.filter((company) => company.companyId !== parseInt(e.target.value)));
     });

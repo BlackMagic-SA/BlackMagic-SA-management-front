@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { customAxios } from '../../hook/customAxios';
 
 const AuditLogContainer = () => {
   const [auditLogs, setAuditLogs] = useState([]);
 
   useEffect(() => {
-    axios("http://localhost:8080/auditLog/list").then((response) => {
+    customAxios("auditLog/list").then((response) => {
       setAuditLogs(response.data);
     });
   }, []);

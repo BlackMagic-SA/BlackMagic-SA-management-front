@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import LogContainer from "../MainPageContainer/LogContainer";
 import Menu from "./Menu";
 import "./MainPage.css";
-import PostContainer from "../Post/PostContainer";
+import PostContainer from "../MainPageContainer/PostContainer";
 import AddCompanyContainer from "../MainPageContainer/AddCompanyContainer";
 import AddManagerContainer from "../MainPageContainer/AddManagerContainer";
-import ManagerListContainer from "../ManagerList/ManagerListContainer";
+import ManagerListContainer from "../MainPageContainer/ManagerListContainer";
 import CompanyListContainer from "../MainPageContainer/CompanyListContainer";
 import AuditLogContainer from '../MainPageContainer/AuditLogContainer';
 
