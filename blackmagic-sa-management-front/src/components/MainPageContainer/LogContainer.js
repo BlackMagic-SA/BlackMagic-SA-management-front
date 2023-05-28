@@ -27,19 +27,19 @@ const LogContainer = () => {
         setCompanies(response.data);
       });
     }
-  }, [logs, companies]);
+  }, []);
 
   const onDownload = async () => {
     try {
       const response = await axios.get("http://localhost:8080/pdf/1", {
-        responseType: "blob", 
+        responseType: "blob",
       });
 
       const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
 
       const link = document.createElement("a");
       link.href = downloadUrl;
-      link.setAttribute("download", "blackmagicSA.pdf"); 
+      link.setAttribute("download", "blackmagicSA.pdf");
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -85,11 +85,13 @@ const LogContainer = () => {
               <td>{index + 1}</td>
               {parseInt(localStorage.getItem("authority")) === 2 ? (
                 <td>
-                  {
-                    companies.filter(
-                      (company) => company.companyId === log.companyId
-                    )[0].companyName
-                  }
+                  {companies.filter(
+                    (company) => company.companyId === log.companyId
+                  )[0]?.companyName
+                    ? companies.filter(
+                        (company) => company.companyId === log.companyId
+                      )[0].companyName
+                    : "-"}
                 </td>
               ) : null}
               <td>{log.deptName}</td>

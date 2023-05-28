@@ -11,18 +11,16 @@ const PostContainer = () => {
   const handleUpload = () => {
     const formData = new FormData();
     formData.append("file", file);
-    console.log(formData.get("file"));
-    console.log(localStorage.getItem('token'))
     axios
       .post("http://localhost:8080/pdf", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          "Authorization": localStorage.getItem('token'),
+          Authorization: localStorage.getItem("token"),
         },
       })
       .then((response) => {
         // 파일 업로드 성공 시 동작
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         // 파일 업로드 실패 시 동작

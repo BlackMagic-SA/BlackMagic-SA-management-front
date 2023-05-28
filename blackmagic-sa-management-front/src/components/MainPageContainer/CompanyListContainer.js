@@ -12,12 +12,10 @@ const CompanyListContainer = () => {
   }, []);
 
   const onDelete = (e) => {
-    console.log(axios.defaults.headers.common['Authorization']);
     axios({
       method: "delete",
       url: `http://localhost:8080/company/${e.target.value}`,
     }).then((response) => {
-      console.log(response)
       setCompanies(companies.filter((company) => company.companyId !== parseInt(e.target.value)));
     });
   };

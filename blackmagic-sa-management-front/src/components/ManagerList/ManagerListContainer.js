@@ -11,7 +11,7 @@ const ManagerListContainer = ({ managerType }) => {
     axios("http://localhost:8080/user/list").then((response) => {
       setUsers(response.data);
     });
-  }, [users]);
+  }, []);
 
   useEffect(() => {
     axios("http://localhost:8080/company/list").then((response) => {
@@ -24,7 +24,9 @@ const ManagerListContainer = ({ managerType }) => {
       method: "delete",
       url: `http://localhost:8080/user/${e.target.value}`,
     }).then(() => {
-      setUsers([]);
+      setUsers(
+        users.filter((user) => user.userId !== parseInt(e.target.value))
+      );
     });
   };
 
@@ -53,11 +55,13 @@ const ManagerListContainer = ({ managerType }) => {
                 <td>{user.accountName}</td>
                 <td>{user.name}</td>
                 <td>
-                  {
-                    companies.filter(
-                      (company) => company.companyId === user.companyId
-                    )[0].companyName
-                  }
+                  {companies.filter(
+                    (company) => company.companyId === user.companyId
+                  )[0]?.companyName
+                    ? companies.filter(
+                        (company) => company.companyId === user.companyId
+                      )[0].companyName
+                    : "-"}
                 </td>
                 <td>{user.contact}</td>
                 <td>{user.email}</td>

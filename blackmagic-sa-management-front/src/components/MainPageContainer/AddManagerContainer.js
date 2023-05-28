@@ -55,17 +55,6 @@ const AddManagerContainer = ({ managerType, setSelectedMenu }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log({
-      companyId: companyId,
-      authority: managerType === 'sub' ? 1 : 2,
-      accountName: accountName,
-      password: password,
-      ipAddress: ipAddress,
-      name: name,
-      email: email,
-      contact: contact,
-      note: note,
-    })
     axios({
       method: "post",
       url: "http://localhost:8080/user",
