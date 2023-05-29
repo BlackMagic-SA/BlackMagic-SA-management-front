@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import axios from 'axios';
-import { customAxios } from '../../hook/customAxios';
+import React, { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import { customAxios } from "../../hook/customAxios";
 
 const AuditLogContainer = () => {
   const [auditLogs, setAuditLogs] = useState([]);
@@ -13,7 +13,7 @@ const AuditLogContainer = () => {
   }, []);
 
   return (
-    <div className='board-container'>
+    <div className="board-container">
       <h1>감사 로그 조회</h1>
       <table style={{ width: "60%", textAlign: "center" }}>
         <thead>
@@ -30,15 +30,15 @@ const AuditLogContainer = () => {
             <tr key={auditLog.logId}>
               <td>{auditLog.logId}</td>
               <td>{auditLog.user.accountName}</td>
-              <td>{auditLog.recordId ? auditLog.recordId : "-"}</td>
+              <td>
+                {auditLog.record?.recordId ? auditLog.record.recordId : "-"}
+              </td>
               <td>{auditLog.workType}</td>
               <td>{auditLog.workTime}</td>
             </tr>
-
           ))}
         </tbody>
       </table>
-      
     </div>
   );
 };
